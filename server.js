@@ -45,11 +45,11 @@ const PORT = process.env.PORT || 2022;
 
 // URLS
 // app.use("*", require("./routes/down"))
-app.use("/", require("./routes/index"));
-app.use("/", require("./routes/auth"));
-app.use("/", require("./routes/user"));
-app.use("/admin", require("./routes/admin/index"));
-app.use("/admin", require("./routes/admin/auth"));
+app.use("/", require("routes/index"));
+app.use("/", require("routes/auth"));
+app.use("/", require("routes/user"));
+app.use("/admin", require("routes/admin/index"));
+app.use("/admin", require("routes/admin/auth"));
 app.use("*", (req, res) => {
   try {
     return res.redirect("/")
