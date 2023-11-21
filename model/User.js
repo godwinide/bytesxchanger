@@ -29,6 +29,11 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    showUpgrade: {
+        type: Boolean,
+        required: false,
+        default: false
+    },
     password: {
         type: String,
         required: true

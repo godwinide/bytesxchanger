@@ -10,7 +10,7 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Dashboard | StashifyHub</title>
+    <title>Dashboard | BytesXchanger</title>
 
     <!-- Fontfaces CSS-->
     <link href="/css/font-face.css" rel="stylesheet" media="all">
@@ -46,12 +46,6 @@
                 </a>
             </div>
             <div class="menu-sidebar2__content js-scrollbar1">
-                <div class="account2">
-                    <div class="image img-cir img-120">
-                        <img src="/images/icon/avatar-big-01.jpg" alt="John Doe" />
-                    </div>
-                    <a href="/admin/signout">Sign out</a>
-                </div>
                 <nav class="navbar-sidebar2">
                     <ul class="list-unstyled navbar__list">
                         <li>
@@ -144,11 +138,21 @@
                                 <label for="cc-name" class="control-label mb-1">Currency</label>
                                 <select name="currency" id="currency" class="form-control" required>
                                     <option value="<%=customer.currency%>">
-                                        Choose Currency
+                                        Select
                                     </option>
                                     <option value="$">Dollar</option>
                                     <option value="£">Pounds</option>
                                     <option value="€">EUR</option>
+                                </select>
+                            </div>
+                            <div class="form-group has-success">
+                                <label for="cc-name" class="control-label mb-1">Require Upgrade</label>
+                                <select name="showUpgrade" id="upgrade" class="form-control" required>
+                                    <option value="<%=customer.showUpgrade%>">
+                                        Select
+                                    </option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
                                 </select>
                             </div>
                             <div class="form-group has-success">
@@ -258,7 +262,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="copyright">
-                                <p>Copyright © 2021 StashifyHub.</p>
+                                <p>Copyright © 2021 BytesXchanger.</p>
                             </div>
                         </div>
                     </div>
