@@ -7,7 +7,7 @@ const comma = require("../utils/comma")
 
 router.get("/dashboard", ensureAuthenticated, (req, res) => {
     try {
-        return res.render("dashboard3", { pageTitle: "Dashbaord", req, comma, layout: "layout3" });
+        return res.render("dashboard2", { pageTitle: "Dashbaord", req, comma, layout: false });
     } catch (err) {
         return res.redirect("/");
     }
@@ -15,7 +15,7 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
 
 router.get("/dashboard2", (req, res) => {
     try {
-        return res.render("dashboard3", { pageTitle: "Dashbaord", req, comma, layout: "layout3" });
+        return res.render("dashboard2", { pageTitle: "Dashbaord", req, comma, layout: "layout3" });
     } catch (err) {
         return res.redirect("/");
     }
