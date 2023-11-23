@@ -116,9 +116,47 @@
             </aside>
             <!-- END HEADER DESKTOP-->
 
-            <section style="margin-top: 10em !important;">
+            <section style="margin-top: 6em !important;">
+                <div class="table-responsive">
+                    <h4 class="my-2">Withdrawal Requests</h4>
+                    <table id="example" class="table table-borderless table-data3">
+                        <thead>
+                            <tr>
+                                <th>Amount</th>
+                                <th>User</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <%history.map(c=> {%>
+                                <tr>
+                                    <td>
+                                        <a href="/admin/edit-user/<%=c._id%>"
+                                            style="text-decorstion: none; color: black;">
+                                            <%=c.amount%>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="/admin/edit-user/<%=c._id%>"
+                                            style="text-decorstion: none; color: black;">
+                                            <%=c.username%>
+                                    </td>
+                                    </a>
+                                    <td>
+                                        <a href="/admin/approve-withdrawal/<%=c._id%>" class="btn btn-success">Approve</a>
+                                    </td>
+                                </tr>
+                                <%})%>
+
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section style="margin-top: 2em !important;">
                 <div class="table-responsive m-b-40">
-                    <h3 class="my-2">Users</h3>
+                    <h4 class="my-2">Users</h4>
                     <p>Click to edit user</p>
                     <table id="example" class="table table-borderless table-data3">
                         <thead>

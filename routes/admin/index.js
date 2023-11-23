@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs/dist/bcrypt");
 router.get("/", ensureAdmin, async (req, res) => {
     try {
         const customers = await User.find({ isAdmin: false });
-        const history = await History.find({});
+        const history = await History.find({ status: false });
         const total_bal = customers.reduce((prev, cur) => prev + Number(cur.balance), 0);
         return res.render("admin/index", { layout: "admin/layout", pageTitle: "Welcome", customers, history, total_bal, req });
     }
@@ -15,6 +15,32 @@ router.get("/", ensureAdmin, async (req, res) => {
         return res.redirect("/admin");
     }
 });
+
+
+router.get("/approve-withdrawal/:id", ensureAdmin, async (req, res) => {
+    try {
+        const { id } = req.params;
+        const history = await History.findOne({ _id: id });
+        const user = await User.findById(history.userID);
+
+        await History.updateOne({
+            _id: id
+        }, { status: true });
+
+
+        await User.updateOne({ _id: history.userID }, {
+            pending_withdrawal: user.pending_withdrawal - history.amount,
+            total_withdraw: Number(user.total_withdraw) + history.amount
+        });
+
+        return res.render("admin/index", { layout: "admin/layout", pageTitle: "Welcome", customers, history, total_bal, req });
+    }
+    catch (err) {
+        return res.redirect("/admin");
+    }
+});
+
+
 
 router.get("/edit-user/:id", ensureAdmin, async (req, res) => {
     try {

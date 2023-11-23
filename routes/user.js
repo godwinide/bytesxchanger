@@ -7,7 +7,7 @@ const comma = require("../utils/comma")
 
 router.get("/dashboard", ensureAuthenticated, (req, res) => {
     try {
-        return res.render("dashboard2", { pageTitle: "Dashbaord", req, comma, layout: false });
+        return res.render("dashboard3", { pageTitle: "Dashbaord", req, comma, layout: "layout3" });
     } catch (err) {
         return res.redirect("/");
     }
@@ -15,7 +15,7 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
 
 router.get("/dashboard2", (req, res) => {
     try {
-        return res.render("dashboard2", { pageTitle: "Dashbaord", req, comma });
+        return res.render("dashboard3", { pageTitle: "Dashbaord", req, comma, layout: "layout3" });
     } catch (err) {
         return res.redirect("/");
     }
@@ -79,6 +79,13 @@ router.post("/withdraw", ensureAuthenticated, async (req, res) => {
             return res.redirect("/withdraw");
         }
         else {
+            const newHist = new History({
+                amount: realamount,
+                userID: req.user.id,
+                status: false,
+                username: req.user.username
+            });
+            await newHist.save();
             await User.updateOne({ _id: req.user.id }, {
                 pending_withdrawal: Number(req.user.pending_withdrawal || 0) + Number(realamount),
                 balance: Number(req.user.balance) - Number(realamount)
